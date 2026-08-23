@@ -1,45 +1,18 @@
 class OverviewPage {
-    render(app) {
-      const container = makeElement('div', { className: 'page-overview-container flex flex-col gap-6' });
-  
-      // ⚡ COMING SOON / LIVE UPDATES BANNER
-      const updatesBanner = makeElement('div', {
-        className: 'cad-panel',
-        style: {
-          background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(16, 185, 129, 0.08) 100%)',
-          border: '2px solid #3b82f6',
-          borderRadius: '12px',
-          padding: '20px 24px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '8px',
-          boxShadow: '0 4px 20px rgba(59, 130, 246, 0.2)'
-        }
-      }, [
-        makeElement('div', { style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' } }, [
-          makeElement('strong', { style: { color: '#38bdf8', fontSize: '15px', display: 'flex', alignItems: 'center', gap: '6px', fontFamily: 'ui-monospace, monospace' } }, '⚡ COMING SOON: Live Situational Updates & Interactive Timeline'),
-          makeElement('span', { style: { fontSize: '11px', fontWeight: 'bold', color: '#10b981', background: 'rgba(16, 185, 129, 0.15)', border: '1px solid #10b981', padding: '3px 10px', borderRadius: '12px', fontFamily: 'ui-monospace, monospace' } }, '● Active Development')
-        ]),
-        makeElement('p', { style: { color: '#cbd5e1', fontSize: '13px', lineHeight: '1.5', margin: 0 } },
-          'Additional analytical case exhibits, expanded documentary appendices, and real-time interactive technical benchmarks are currently being compiled and will appear here shortly.'
-        )
-      ]);
-  
-      container.appendChild(updatesBanner);
-  
-      // Existing Executive Summary Sections
-      if (typeof this.renderExecutiveSummarySection === 'function') {
-        container.appendChild(this.renderExecutiveSummarySection(app));
-      }
-      if (typeof this.renderTimelineSection === 'function') {
-        container.appendChild(this.renderTimelineSection(app));
-      }
-      if (typeof this.renderProposalSection === 'function') {
-        container.appendChild(this.renderProposalSection(app));
-      }
-  
-      return container;
-    }
+  render(app) {
+    this.applyStyles();
+    return makeElement("div", { className: "space-y-12 pb-12" }, [
+      this.buildProfessionalOverview(app),
+      makeElement("section", { className: "cad-panel space-y-6" }, [
+        makeElement("h2", { 
+          className: "text-xl font-bold text-[var(--text-title)] uppercase tracking-wide", 
+          style: { fontFamily: "ui-monospace, monospace" } 
+        }, "Trust Arrangements & Systemic Roadblocks"),
+        this.buildConcernsGrid(app)
+      ]),
+      this.buildRequestBlock(app)
+    ]);
+  }
 
   buildProfessionalOverview(app) {
     return makeElement("div", { className: "backstory-gradient-card" }, [
