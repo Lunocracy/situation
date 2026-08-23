@@ -2,7 +2,7 @@ class AppLoader {
   static async loadScript(src) {
     return new Promise((resolve, reject) => {
       const s = document.createElement('script');
-      s.src = src;
+      s.src = src + (src.includes('?') ? '&' : '?') + 'v=' + Date.now();
       s.async = false;
       s.onload = () => resolve(src);
       s.onerror = () => reject(new Error('Failed to load script: ' + src));
@@ -14,7 +14,7 @@ class AppLoader {
     return new Promise((resolve, reject) => {
       const l = document.createElement('link');
       l.rel = 'stylesheet';
-      l.href = href;
+      l.href = href + (href.includes('?') ? '&' : '?') + 'v=' + Date.now();
       l.onload = () => resolve(href);
       l.onerror = () => reject(new Error('Failed to load stylesheet: ' + href));
       document.head.appendChild(l);
@@ -25,7 +25,7 @@ class AppLoader {
     const root = document.getElementById(containerId) || document.body;
 
     try {
-      const res = await fetch('luno.json');
+      const res = await fetch('luno.json?v=' + Date.now());
       if (!res.ok) throw new Error('HTTP ' + res.status + ' fetching luno.json');
       const config = await res.json();
 
@@ -56,18 +56,24 @@ class AppLoader {
         DomBasics.run();
       }
 
-      // 5. Instantiate and Run Entrypoint Class
-      const entryClass = (config.entrypoint && config.entrypoint.class) || config.mainClass || 'AccuDrawValuation';
+      // 5. Resolve Entrypoint (SituationApp or alias)
+      const entryClass = (config.entrypoint && config.entrypoint.class) || config.mainClass || 'SituationApp';
       const entryMethod = (config.entrypoint && config.entrypoint.method) || 'run';
 
-      const TargetClass = window[entryClass];
+      let TargetClass = window[entryClass] || globalThis[entryClass] || window.SituationApp || window.AccuDrawValuation;
+      if (!TargetClass) {
+        try { TargetClass = eval(entryClass); } catch (e) {}
+      }
+
       if (typeof TargetClass !== 'function') {
-        throw new Error('Entrypoint class "' + entryClass + '" not found on window.');
+        throw new Error('Entrypoint class "' + entryClass + '" could not be resolved on window scope.');
       }
 
       const appInstance = new TargetClass();
       if (typeof appInstance[entryMethod] === 'function') {
         await appInstance[entryMethod]({ container: root, config });
+      } else if (typeof appInstance.run === 'function') {
+        await appInstance.run({ container: root, config });
       } else {
         throw new Error('Entrypoint method "' + entryMethod + '" not found on ' + entryClass);
       }
@@ -83,3 +89,4 @@ class AppLoader {
 }
 
 window.AppLoader = AppLoader;
+globalThis.AppLoader = AppLoader;

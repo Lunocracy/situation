@@ -4,10 +4,11 @@
   "description": "Career trajectory, technical portfolio, and enterprise value assessment dossier",
   "type": "luno-web-app",
   "entrypoint": {
-    "file": "js/AccuDrawValuation.js",
-    "class": "AccuDrawValuation",
+    "file": "js/SituationApp.js",
+    "class": "SituationApp",
     "method": "run"
   },
+  "mainClass": "SituationApp",
   "library": [
     "DomBasics.js",
     "UITools.js",
@@ -22,6 +23,17 @@
     "js/CaretakerBiasPage.js",
     "js/CurrentWorkPage.js",
     "js/ElderAdvocacyPage.js",
-    "js/AccuDrawValuation.js"
-  ]
+    "js/SituationApp.js"
+  ],
+  "processedCountSinceCheckpoint": 8,
+  "changedMethods": {
+    "app/OutboxOptionsModal.js.bak": "2026-08-23T04:45:31.032Z",
+    "app/OutboxOptionsModal.js": "2026-08-23T04:45:31.032Z",
+    "app/OutboxQueue.js.bak": "2026-08-23T04:45:31.032Z",
+    "app/OutboxQueue.js": "2026-08-23T04:45:31.032Z",
+    "LunoPatchLog.html": "2026-08-23T04:45:31.032Z",
+    "app/ClientApp.js": "2026-08-23T05:20:47.196Z",
+    "app/LunoProjectTemplates.js": "2026-08-23T05:20:47.196Z",
+    "browser/DiskBrowser.js": "2026-08-23T05:20:47.196Z"
+  }
 }
