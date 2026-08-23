@@ -574,8 +574,36 @@ class SituationApp {
   }
 
   loadAppStyles() {
+    this.applyCoreResetCSS();
+    this.applyCoreLayoutCSS();
+    this.applyHeaderCSS();
+    this.applyThemeSwitcherCSS();
+    this.applyBFNCSS();
+    this.applyNavigationCSS();
+  }
+
+  applyCoreResetCSS() {
     applyCss("html, body { margin: 0 !important; padding: 0 !important; min-height: 100vh; width: 100%; background-color: #070a12; } .cad-container, .cad-container * { box-sizing: border-box; margin: 0; padding: 0; }", "cad-core-reset-styles");
-    applyCss(".global-nav-bar { display: flex; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid var(--border-color, #1e293b); padding-bottom: 16px; margin-bottom: 16px; margin-top: 16px; width: 100%; } .global-nav-link { font-size: 11px; font-family: ui-monospace, monospace; font-weight: bold; text-transform: uppercase; color: var(--text-secondary, #94a3b8); text-decoration: none; border: 1px solid var(--border-color, #1e293b); padding: 8px 16px; border-radius: 8px; background: var(--bg-panel, #0c111d); transition: all 0.2s ease-in-out; } .global-nav-link:hover { background: var(--btn-hover, #334155); color: #ffffff; } .global-nav-link.active { background: #3b82f6; color: #ffffff; border-color: #3b82f6; }", "cad-navigation-styles");
+  }
+
+  applyCoreLayoutCSS() {
+    applyCss(".cad-container { --bg-primary: #070a12; --bg-grid: rgba(255, 255, 255, 0.02); --bg-panel: #0c111d; --bg-panel-inner: #05070a; --text-primary: #cbd5e1; --text-secondary: #94a3b8; --text-title: #ffffff; --border-color: #1e293b; --border-hover: #334155; --btn-bg: #1e293b; --btn-hover: #334155; --btn-text: #e2e8f0; --accent-story-from: rgba(59, 130, 246, 0.06); --accent-story-to: rgba(168, 85, 247, 0.06); background-color: var(--bg-primary); color: var(--text-primary); font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; min-height: 100vh; width: 100%; padding: 48px 16px; } .cad-grid-bg { background-size: 32px 32px; background-image: linear-gradient(to right, var(--bg-grid) 1px, transparent 1px), linear-gradient(to bottom, var(--bg-grid) 1px, transparent 1px); } .cad-wrapper { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 48px; } .cad-panel { background-color: var(--bg-panel); border: 1px solid var(--border-color); border-radius: 12px; padding: 32px; }", "cad-core-layout-styles");
+  }
+
+  applyHeaderCSS() {
+    applyCss(".minimal-header { display: flex; flex-direction: column; gap: 24px; border-bottom: 1px solid var(--border-color); padding-bottom: 24px; } .header-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; } .tags-wrapper { display: flex; gap: 8px; } .tag-pill { font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; } .tag-pill-blue { background-color: rgba(59, 130, 246, 0.1); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.3); } .tag-pill-slate { background-color: rgba(148, 163, 184, 0.1); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.2); } .title-group h1 { font-size: 32px; font-weight: 800; color: var(--text-title); letter-spacing: -0.02em; margin-bottom: 8px; line-height: 1.1; } @media (min-width: 768px) { .title-group h1 { font-size: 44px; } } .title-subtitle { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; font-family: ui-monospace, monospace; color: var(--text-secondary); font-weight: 600; }", "cad-header-styles");
+  }
+
+  applyThemeSwitcherCSS() {
+    applyCss(".theme-switcher { display: flex; align-items: center; gap: 6px; padding: 4px; background-color: var(--btn-bg); border: 1px solid var(--border-color); border-radius: 8px; } .theme-switcher button { padding: 4px 12px; font-size: 11px; font-weight: 600; border-radius: 6px; border: none; cursor: pointer; background: transparent; color: var(--text-secondary); display: flex; align-items: center; gap: 4px; } .theme-switcher button.active { background-color: #3b82f6; color: #ffffff; } .reveal-mode-row { margin-top: 6px; display: flex; justify-content: flex-end; } .reveal-mode-select { appearance: none; background: transparent; border: none; color: var(--text-secondary); font-size: 10px; font-family: ui-monospace, monospace; text-transform: uppercase; letter-spacing: 0.06em; padding: 2px 4px; cursor: pointer; opacity: 0.6; }", "cad-theme-switcher-styles");
+  }
+
+  applyBFNCSS() {
+    applyCss(".consensus-action-wrapper { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100%; } @media (min-width: 768px) { .consensus-action-wrapper { align-items: flex-end; } } .visualize-bfn-btn { margin-top: 10px; display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #f59e0b, #ef4444); border: none; color: #ffffff; font-size: 11px; font-weight: 800; font-family: ui-monospace, monospace; text-transform: uppercase; letter-spacing: 0.08em; padding: 8px 16px; border-radius: 20px; cursor: pointer; } .motion-slider-row { display: flex; align-items: center; gap: 8px; margin-top: 4px; } .motion-slider-label { font-size: 10px; font-family: ui-monospace, monospace; text-transform: uppercase; color: var(--text-secondary); font-weight: bold; } .motion-slider { width: 70px; height: 4px; border-radius: 2px; background: var(--border-color); outline: none; cursor: pointer; }", "cad-bfn-styles");
+  }
+
+  applyNavigationCSS() {
+    applyCss(".global-nav-bar { display: flex; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid var(--border-color); padding-bottom: 16px; margin-bottom: 16px; margin-top: 16px; width: 100%; } .global-nav-link { font-size: 11px; font-family: ui-monospace, monospace; font-weight: bold; text-transform: uppercase; color: var(--text-secondary); text-decoration: none; border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 8px; background: var(--bg-panel); transition: all 0.2s ease-in-out; } .global-nav-link:hover { background: var(--btn-hover); color: var(--text-title); border-color: var(--border-hover); } .global-nav-link.active { background: #3b82f6; color: #ffffff; border-color: #3b82f6; } .backstory-gradient-card { padding: 32px; border: 1px solid var(--border-color); border-radius: 16px; display: flex; flex-direction: column; gap: 24px; background: linear-gradient(135deg, var(--accent-story-from), var(--accent-story-to)); } .backstory-paragraph-highlight { font-size: 16px; font-weight: 500; color: var(--text-primary); line-height: 1.6; } @media (min-width: 768px) { .backstory-paragraph-highlight { font-size: 18px; } } .backstory-paragraph { font-size: 14px; color: var(--text-secondary); line-height: 1.6; } .inline-link-highlight { color: #2563eb; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }", "cad-navigation-styles");
   }
 
   getValuationStaticData() {
@@ -592,5 +620,3 @@ class SituationApp {
 
 window.SituationApp = SituationApp;
 globalThis.SituationApp = SituationApp;
-window.AccuDrawValuation = SituationApp;
-globalThis.AccuDrawValuation = SituationApp;
