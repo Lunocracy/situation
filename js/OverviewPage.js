@@ -1,0 +1,231 @@
+class OverviewPage {
+  render(app) {
+    this.applyStyles();
+    return makeElement("div", { className: "space-y-12 pb-12" }, [
+      this.buildProfessionalOverview(app),
+      makeElement("section", { className: "cad-panel space-y-6" }, [
+        makeElement("h2", { 
+          className: "text-xl font-bold text-[var(--text-title)] uppercase tracking-wide", 
+          style: { fontFamily: "ui-monospace, monospace" } 
+        }, "Trust Arrangements & Systemic Roadblocks"),
+        this.buildConcernsGrid(app)
+      ]),
+      this.buildRequestBlock(app)
+    ]);
+  }
+
+  buildProfessionalOverview(app) {
+    return makeElement("div", { className: "backstory-gradient-card" }, [
+      makeElement("h3", { className: "text-xl font-bold text-[var(--text-title)]" }, "Fiduciary Impasse & Restorative Runway Proposal"),
+      makeElement("p", { className: "backstory-paragraph-highlight" }, [
+        "We are now well into the execution of the plan, and the second half of the fund allocation has been cut off because I did not take a low-level, low-wage job. This document is no longer a forward-looking proposal; rather, it is a retrospective explanation of why the unworkable trust terms and the subsequent funding cutoff constitute an unwarranted penalty, and why my decisions were based on absolute mathematical necessity. At 62 years of age and carrying significant debt, abandoning my extremely rare skills - which have historically generated billions of dollars in enterprise value (as detailed on the ",
+        makeElement("a", {
+          href: "#/value-assessment",
+          className: "inline-link-highlight",
+          onclick: (e) => {
+            e.preventDefault();
+            window.location.hash = "#/value-assessment";
+          }
+        }, "Valuation Assessment page"),
+        " and supported by independent AI evaluations) - to take a survival-level job made no practical sense. Doing so would have guaranteed permanent debt with zero path to retirement, whereas a strategic runway focused on high-leverage software creation remained the only realistic path to long-term solvency and self-sufficiency."
+      ]),
+      this.buildAnalogiesRow(app)
+    ]);
+  }
+
+  buildConcernsGrid(app) {
+    const concerns = [
+      {
+        num: "1",
+        title: "A Trust Signed Under Practical Duress",
+        desc: "The current trust arrangement was not negotiated or designed with mutual consultation. It was presented as a fait accompli during a severe financial, housing, and mental health crisis. Declining would have meant immediate homelessness, leaving no practical alternative but to sign."
+      },
+      {
+        num: "2",
+        title: "Structural Impossibility of Long-Term Solvency",
+        desc: "The mathematical reality of the plan (which demanded that I take low-paying, unrelated work) guaranteed failure. It provided no path to cover debt, no ability to build retirement savings, and left no cushion against aging or illness, while forcing me to entirely miss the current, highly time-sensitive generative AI wave."
+      },
+      {
+        num: "3",
+        title: "Explicit Refusal to Acknowledge Professional Value",
+        desc: "The administrator has explicitly treated my professional skills, career achievements, and earning potential as irrelevant to how support was structured. This stood in direct contrast to a career history of building products that generated billions in value, and a past professional recommendation that helped build a $15B enterprise."
+      },
+      {
+        num: "4",
+        title: "Ideological Framing Over Practical Outcomes",
+        desc: "The structure of the support was heavily influenced by an individualistic ideology that treats financial setback as a moral failure and views restorative support as an improper handout. This produced a punitive environment that sustained survival but actively blocked professional recovery, culminating in cutting off the second half of the allocation."
+      },
+      {
+        num: "5",
+        title: "Inconsistencies and Lack of Transparency",
+        desc: "I was told that early financial modifications were impossible due to trust limitations and estate risks, and was denied financial transparency under the guise of privacy. Yet, when proposing to pay back the estate from future lucrative ventures, I was told nobody wanted the money back because everyone else is already wealthy."
+      },
+      {
+        num: "6",
+        title: "A Profound Lack of Empathy & Hostile Comments",
+        desc: "Expressing vulnerability regarding family isolation was met with the dismissive comment that 'at 61 years old, you shouldn\'t need family approval.' This lack of empathy came from an administrator who has not faced similar hardships and has previously used hostile verbal and physical intimidation (the late 2022 gun threat) to assert control."
+      }
+    ];
+
+    return makeElement("div", { className: "overview-grid-spacing" }, 
+      concerns.map(c => {
+        return makeElement("div", { className: "overview-concern-card" }, [
+          makeElement("div", { className: "flex justify-between items-center" }, [
+            makeElement("span", { className: "elder-card-badge" }, `Concern #${c.num}`)
+          ]),
+          makeElement("h4", { className: "overview-concern-title" }, c.title),
+          makeElement("p", { className: "overview-concern-desc" }, c.desc)
+        ]);
+      })
+    );
+  }
+
+  buildRequestBlock(app) {
+    return makeElement("div", {
+      className: "transcript-quote-box leading-relaxed text-sm text-[var(--text-primary)] space-y-4"
+    }, [
+      makeElement("h4", { 
+        className: "font-bold text-[var(--text-title)] text-base border-b border-[var(--border-color)] pb-2 uppercase tracking-wider" 
+      }, "The Restorative Alternative: Why a Strategic Runway Was Requested"),
+      makeElement("p", {}, "Rather than seeking venture capital or avoiding responsibility, I had requested a short, front-loaded runway that would have acknowledged:"),
+      makeElement("ul", { className: "list-disc pl-5 space-y-2 text-[var(--text-secondary)]" }, [
+        makeElement("li", {}, [
+          makeElement("strong", {}, "Extremely Rare Skills: "), 
+          "My documented expertise in foundational drafting interfaces (such as inventing AccuDraw and inspiring Inspect Element, detailed on the Valuation Assessment page) remains a rare and valuable asset that should have been leveraged."
+        ]),
+        makeElement("li", {}, [
+          makeElement("strong", {}, "The Timing Window: "), 
+          "Missing the current generative AI and visual design wave represents a permanent loss of strategic opportunity."
+        ]),
+        makeElement("li", {}, [
+          makeElement("strong", {}, "Realism and Math: "), 
+          "At 62 years of age and in debt, a plan requiring me to abandon my core professional capability to take a low-level job was mathematically guaranteed to fail. It left no path to cover debt or ever retire."
+        ])
+      ]),
+      makeElement("p", { className: "text-xs text-[var(--text-secondary)] italic border-t border-[var(--border-color)] pt-3 mt-4" }, 
+        "Conclusion: Cutting off the second half of the allocation as punishment for not taking an unrelated low-level job ignores the underlying math. The requested runway was a realistic, self-funding transition plan."
+      )
+    ]);
+  }
+
+  buildAnalogiesRow(app) {
+    return makeElement("div", { className: "grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6" }, [
+      makeElement("div", { className: "overview-concern-card flex flex-col sm:flex-row gap-5 p-6 items-start" }, [
+        makeElement("div", { 
+          className: "analogy-image-frame w-full sm:w-60 flex-shrink-0 relative bg-slate-950/60 rounded-lg border border-[var(--border-color)] overflow-hidden cursor-pointer group",
+          style: { width: "100%", maxWidth: "260px", height: "145px", flexShrink: "0", position: "relative", borderRadius: "8px", overflow: "hidden", border: "1px solid var(--border-color)", cursor: "pointer", backgroundColor: "#05070a" },
+          onclick: () => {
+            if (app && typeof app.openExhibitModal === 'function') {
+              app.openExhibitModal(
+                'images/lifePreserver.png', 
+                'The Life Preserver Analogy', 
+                '"I was drowning, and I was thrown a life preserver. That life preserver keeps me from going under immediately - for which I am grateful - but it does not take me anywhere. What I actually need is to be taken to that boat heading toward shore - my actual career and skills."'
+              );
+            }
+          }
+        }, [
+          makeElement("img", {
+            src: "images/lifePreserver.png",
+            alt: "Life Preserver Analogy",
+            style: { width: "100%", height: "100%", objectFit: "contain", padding: "6px", display: "block" },
+            onerror: (e) => {
+              e.target.style.display = "none";
+              const fallback = e.target.parentNode.querySelector(".analogy-icon-fallback");
+              if (fallback) fallback.style.display = "flex";
+            }
+          }),
+          makeElement("div", {
+            className: "analogy-icon-fallback absolute inset-0 hidden items-center justify-center text-3xl",
+            style: { position: "absolute", inset: "0", display: "none", alignItems: "center", justifyContent: "center", fontSize: "28px", backgroundColor: 'rgba(15, 23, 42, 0.8)' }
+          }, "⚓")
+        ]),
+        makeElement("div", { className: "flex-1 min-w-0" }, [
+          makeElement("span", { className: "elder-card-badge mb-2 inline-block" }, "⚓ The Life Preserver Analogy"),
+          makeElement("p", { className: "text-xs text-[var(--text-primary)] italic leading-relaxed" }, 
+            "\"I was drowning, and I was thrown a life preserver. That life preserver keeps me from going under immediately - for which I am grateful - but it does not take me anywhere. What I actually need is to be taken to that boat heading toward shore - my actual career and skills. Instead, I am expected to cling to this preserver indefinitely, guaranteeing eventual failure through debt, aging, or exhaustion.\""
+          )
+        ])
+      ]),
+
+      makeElement("div", { className: "overview-concern-card flex flex-col sm:flex-row gap-5 p-6 items-start" }, [
+        makeElement("div", { 
+          className: "analogy-image-frame w-full sm:w-60 flex-shrink-0 relative bg-slate-950/60 rounded-lg border border-[var(--border-color)] overflow-hidden cursor-pointer group",
+          style: { width: "100%", maxWidth: "260px", height: "145px", flexShrink: "0", position: "relative", borderRadius: "8px", overflow: "hidden", border: "1px solid var(--border-color)", cursor: "pointer", backgroundColor: "#05070a" },
+          onclick: () => {
+            if (app && typeof app.openExhibitModal === 'function') {
+              app.openExhibitModal(
+                'images/carrotAnalogy.png', 
+                'The Carrot Analogy', 
+                '"A carrot is dangled in front of me but leading me into a desert while I protest that there is a fertile Valley in the other direction. Ultimately, I grab the carrot and run toward the fertile Valley rather than going into the desert where I would die."'
+              );
+            }
+          }
+        }, [
+          makeElement("img", {
+            src: "images/carrotAnalogy.png",
+            alt: "The Carrot Analogy",
+            style: { width: "100%", height: "100%", objectFit: "contain", padding: "6px", display: "block" },
+            onerror: (e) => {
+              e.target.style.display = "none";
+              const fallback = e.target.parentNode.querySelector(".analogy-icon-fallback");
+              if (fallback) fallback.style.display = "flex";
+            }
+          }),
+          makeElement("div", {
+            className: "analogy-icon-fallback absolute inset-0 hidden items-center justify-center text-3xl",
+            style: { position: "absolute", inset: "0", display: "none", alignItems: "center", justifyContent: "center", fontSize: "28px", backgroundColor: 'rgba(15, 23, 42, 0.8)' }
+          }, "🥕")
+        ]),
+        makeElement("div", { className: "flex-1 min-w-0" }, [
+          makeElement("span", { className: "elder-card-badge mb-2 inline-block" }, "🥕 The Carrot Analogy"),
+          makeElement("p", { className: "text-xs text-[var(--text-primary)] italic leading-relaxed" }, 
+            "\"A carrot is dangled in front of me but leading me into a desert while I protest that there is a fertile Valley in the other direction. Ultimately, I grab the carrot and run toward the fertile Valley rather than going into the desert where I would die.\""
+          )
+        ])
+      ])
+    ]);
+  }
+
+  applyStyles() {
+    applyCss(`
+      .overview-grid-spacing {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin-top: 16px;
+      }
+      @media (min-width: 768px) {
+        .overview-grid-spacing {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      .overview-concern-card {
+        background-color: var(--bg-panel-inner);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+      .overview-concern-card:hover {
+        border-color: var(--border-hover);
+      }
+      .overview-concern-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--text-title);
+        margin: 0;
+      }
+      .overview-concern-desc {
+        font-size: 13.5px;
+        color: var(--text-secondary);
+        line-height: 1.7;
+        margin: 0;
+      }
+    `, "overview-page-custom-styles");
+  }
+}
+
+window.OverviewPage = OverviewPage;

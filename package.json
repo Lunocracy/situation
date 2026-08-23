@@ -1,0 +1,9 @@
+{
+  "name": "situation",
+  "version": "1.0.0",
+  "description": "Career Dossier & Enterprise Valuation Assessment",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js 8085"
+  }
+}

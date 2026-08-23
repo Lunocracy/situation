@@ -1,0 +1,27 @@
+{
+  "name": "MySituation",
+  "version": "1.0.0",
+  "description": "Career trajectory, technical portfolio, and enterprise value assessment dossier",
+  "type": "luno-web-app",
+  "entrypoint": {
+    "file": "js/AccuDrawValuation.js",
+    "class": "AccuDrawValuation",
+    "method": "run"
+  },
+  "library": [
+    "DomBasics.js",
+    "UITools.js",
+    "VideoPlayer.js"
+  ],
+  "main": [
+    "js/ValueEmberLogo.js",
+    "js/SnareDrumAnimation.js",
+    "js/OverviewPage.js",
+    "js/ValuationPage.js",
+    "js/AiPerspectivePage.js",
+    "js/CaretakerBiasPage.js",
+    "js/CurrentWorkPage.js",
+    "js/ElderAdvocacyPage.js",
+    "js/AccuDrawValuation.js"
+  ]
+}
