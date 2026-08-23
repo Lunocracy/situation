@@ -1,39 +1,32 @@
 {
   "name": "MySituation",
   "version": "1.0.0",
-  "description": "Career trajectory, technical portfolio, and enterprise value assessment dossier",
+  "description": "Situational Analysis, Career Dossier & Technical Portfolio",
   "type": "luno-web-app",
+  "mainClass": "SituationApp",
   "entrypoint": {
     "file": "js/SituationApp.js",
     "class": "SituationApp",
     "method": "run"
   },
-  "mainClass": "SituationApp",
-  "library": [
-    "DomBasics.js",
-    "UITools.js",
-    "VideoPlayer.js"
-  ],
   "main": [
-    "js/ValueEmberLogo.js",
-    "js/SnareDrumAnimation.js",
     "js/OverviewPage.js",
-    "js/ValuationPage.js",
     "js/AiPerspectivePage.js",
+    "js/ElderAdvocacyPage.js",
     "js/CaretakerBiasPage.js",
     "js/CurrentWorkPage.js",
-    "js/ElderAdvocacyPage.js",
+    "js/ValuationPage.js",
+    "js/ValueEmberLogo.js",
+    "js/SnareDrumAnimation.js",
     "js/SituationApp.js"
   ],
-  "processedCountSinceCheckpoint": 8,
+  "library": [
+    "DomBasics.js",
+    "UITools.js"
+  ],
+  "processedCountSinceCheckpoint": 2,
   "changedMethods": {
-    "app/OutboxOptionsModal.js.bak": "2026-08-23T04:45:31.032Z",
-    "app/OutboxOptionsModal.js": "2026-08-23T04:45:31.032Z",
-    "app/OutboxQueue.js.bak": "2026-08-23T04:45:31.032Z",
-    "app/OutboxQueue.js": "2026-08-23T04:45:31.032Z",
-    "LunoPatchLog.html": "2026-08-23T04:45:31.032Z",
-    "app/ClientApp.js": "2026-08-23T05:20:47.196Z",
-    "app/LunoProjectTemplates.js": "2026-08-23T05:20:47.196Z",
-    "browser/DiskBrowser.js": "2026-08-23T05:20:47.196Z"
+    "luno.json": "2026-08-23T10:16:46.078Z",
+    "files.json": "2026-08-23T10:16:46.078Z"
   }
 }

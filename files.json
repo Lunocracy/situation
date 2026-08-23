@@ -1,22 +1,21 @@
 {
+  "name": "MySituation",
+  "mainClass": "SituationApp",
   "main": [
-    "js/AccuDrawValuation.js"
-  ],
-  "local": [
-    "js/SnareDrumAnimation.js",
+    "js/OverviewPage.js",
     "js/AiPerspectivePage.js",
+    "js/ElderAdvocacyPage.js",
     "js/CaretakerBiasPage.js",
     "js/CurrentWorkPage.js",
-    "js/ElderAdvocacyPage.js",
-    "js/NotesPage.js",
-    "js/OverviewPage.js",
     "js/ValuationPage.js",
-    "js/ValueEmberLogo.js"
+    "js/ValueEmberLogo.js",
+    "js/SnareDrumAnimation.js",
+    "js/SituationApp.js"
   ],
+  "local": [],
   "library": [
     "DomBasics.js",
-    "UITools.js",
-    "VideoPlayer.js"
+    "UITools.js"
   ],
   "thirdParty": []
 }
