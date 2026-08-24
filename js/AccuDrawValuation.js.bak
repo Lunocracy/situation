@@ -1,3 +1,0 @@
-class AccuDrawValuation extends SituationApp {}
-window.AccuDrawValuation = AccuDrawValuation;
-globalThis.AccuDrawValuation = AccuDrawValuation;

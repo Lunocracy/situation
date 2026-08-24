@@ -2,31 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Career Dossier & Enterprise Valuation Assessment</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    html, body {
-      background: #070a12 !important;
-      color: #cbd5e1;
-      font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-    }
-    #app-root {
-      width: 100%;
-      min-height: 100vh;
-    }
-  </style>
-  <script src="library/AppLoader.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Situation App - Career &amp; Situational Review</title>
+  <script src="/Library/DomBasics.js"></script>
+  <script src="/Library/UITools.js"></script>
+  <script src="/Library/VideoPlayer.js"></script>
+  <script src="/Library/LunoLoader.js"></script>
 </head>
 <body>
   <div id="app-root"></div>
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      if (typeof AppLoader !== "undefined") {
-        AppLoader.loadApp("app-root");
+    document.addEventListener("DOMContentLoaded", async function() {
+      if (typeof LunoLoader !== "undefined") {
+        await LunoLoader.loadApp("app-root");
       }
     });
   </script>
