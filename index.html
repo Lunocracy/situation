@@ -3,23 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Situation App - Career &amp; Situational Review</title>
-  <script src="library/DomBasics.js"></script>
-  <script src="library/UITools.js"></script>
-  <script src="library/VideoPlayer.js"></script>
-  <script src="library/LunoLoader.js"></script>
+  <title>MySituation</title>
+  <script>
+    (function() {
+      var isStatic = location.hostname.endsWith("github.io") || location.hostname.endsWith("pages.dev") || location.protocol === "file:";
+      var libPrefix = isStatic ? "./library/" : "/Library/";
+      var script = document.createElement("script");
+      script.src = libPrefix + "LunoLoader.js?v=" + Date.now();
+      script.onload = function() {
+        if (typeof LunoLoader !== "undefined") {
+          LunoLoader.loadApp("app-root");
+        }
+      };
+      script.onerror = function() {
+        var alt = document.createElement("script");
+        alt.src = "./Library/LunoLoader.js?v=" + Date.now();
+        alt.onload = function() {
+          if (typeof LunoLoader !== "undefined") LunoLoader.loadApp("app-root");
+        };
+        document.head.appendChild(alt);
+      };
+      document.head.appendChild(script);
+    })();
+  </script>
 </head>
 <body>
   <div id="app-root"></div>
-  <script>
-    document.addEventListener("DOMContentLoaded", async function() {
-      if (typeof DomBasics !== "undefined" && typeof DomBasics.run === "function") {
-        DomBasics.run();
-      }
-      if (typeof LunoLoader !== "undefined") {
-        await LunoLoader.loadApp("app-root");
-      }
-    });
-  </script>
 </body>
 </html>
