@@ -4,15 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Situation App - Career &amp; Situational Review</title>
-  <script src="/Library/DomBasics.js"></script>
-  <script src="/Library/UITools.js"></script>
-  <script src="/Library/VideoPlayer.js"></script>
-  <script src="/Library/LunoLoader.js"></script>
+  <script src="library/DomBasics.js"></script>
+  <script src="library/UITools.js"></script>
+  <script src="library/VideoPlayer.js"></script>
+  <script src="library/LunoLoader.js"></script>
 </head>
 <body>
   <div id="app-root"></div>
   <script>
     document.addEventListener("DOMContentLoaded", async function() {
+      if (typeof DomBasics !== "undefined" && typeof DomBasics.run === "function") {
+        DomBasics.run();
+      }
       if (typeof LunoLoader !== "undefined") {
         await LunoLoader.loadApp("app-root");
       }
