@@ -1393,8 +1393,8 @@ class UITools {
         e.target.closest('button, .uw-controls, input, select')
       )
         return;
-      if (this._maximized || this._minimized || UITools.isSmallScreen()) return;
-      e.preventDefault();
+      if (this._maximized || this._minimized) return;
+      if (e.cancelable) e.preventDefault();
 
       if (this._isSnapped) {
         this.restore();
@@ -1406,8 +1406,9 @@ class UITools {
       el.style.transition = 'none';
       el.style.transform = 'none';
 
-      const currentLeft = parseFloat(el.style.left) || 0;
-      const currentTop = parseFloat(el.style.top) || 0;
+      const dragRect = el.getBoundingClientRect();
+      const currentLeft = dragRect.left;
+      const currentTop = dragRect.top;
 
       const pt = this._pt(e);
       this._dragSt = { px: pt.x, py: pt.y, rl: currentLeft, rt: currentTop };
@@ -1447,24 +1448,7 @@ class UITools {
       if (!e.target.closest('button')) this.toggleMaximize();
     });
 
-    let swY = null;
-    this.header.addEventListener(
-      'touchstart',
-      (e) => {
-        swY = e.touches[0].clientY;
-      },
-      { passive: true }
-    );
-    this.header.addEventListener(
-      'touchend',
-      (e) => {
-        if (swY === null) return;
-        const dy = e.changedTouches[0].clientY - swY;
-        swY = null;
-        if (dy > 55 && UITools.isSmallScreen()) this.toggleMinimize();
-      },
-      { passive: true }
-    );
+    
   }
 
   _listenResizeDialog() {
@@ -1473,17 +1457,20 @@ class UITools {
     this._sizers.forEach((sizer, i) => {
       const onDown = (e) => {
         if (this._maximized || this._isSnapped) return;
-        e.preventDefault();
+        if (e.cancelable) e.preventDefault();
         e.stopPropagation();
         UITools._showCovers();
         const el = this.element;
         el.style.transition = 'none';
 
         const rect = el.getBoundingClientRect();
-        const currentLeft = parseFloat(el.style.left) || 0;
-        const currentTop = parseFloat(el.style.top) || 0;
+        const currentLeft = rect.left;
+        const currentTop = rect.top;
 
+        el.style.left = `${currentLeft}px`;
+        el.style.top = `${currentTop}px`;
         el.style.transform = 'none';
+
         const pt = this._pt(e);
         const st = {
           sx: pt.x,
@@ -1498,11 +1485,11 @@ class UITools {
 
         const mm = (ev) => {
           if (ev.cancelable) ev.preventDefault();
-          const p = this._pt(ev),
-            dx = p.x - st.sx,
-            dy = p.y - st.sy;
-          const nW = Math.max(this.options.minWidth, st.w + dx * st.xF);
-          const nH = Math.max(this.options.minHeight, st.h + dy * st.yF);
+          const p = this._pt(ev);
+          const dx = p.x - st.sx;
+          const dy = p.y - st.sy;
+          const nW = Math.max(this.options.minWidth || 160, st.w + dx * st.xF);
+          const nH = Math.max(this.options.minHeight || 100, st.h + dy * st.yF);
           Object.assign(el.style, {
             width: `${nW}px`,
             height: `${nH}px`,
@@ -1512,6 +1499,7 @@ class UITools {
           if (this.callback) this.triggerCallback();
           this.options.onResize?.(nW, nH);
         };
+
         const mu = () => {
           UITools._hideCovers();
           this._saveState();
@@ -1520,6 +1508,7 @@ class UITools {
           window.removeEventListener('touchmove', mm);
           window.removeEventListener('touchend', mu);
         };
+
         window.addEventListener('mousemove', mm);
         window.addEventListener('mouseup', mu);
         window.addEventListener('touchmove', mm, { passive: false });
@@ -1919,43 +1908,43 @@ class UITools {
     const defs = [
       {
         cls: 'uw-c-tr',
-        pos: { top: '-2px', right: '-2px', cursor: 'nesw-resize' },
-        path: 'M 5 3 Q 13 3 13 11',
+        pos: { top: '-3px', right: '-3px', cursor: 'nesw-resize' },
+        path: 'M 3 3 Q 13 3 13 13',
       },
       {
         cls: 'uw-c-br',
-        pos: { bottom: '-2px', right: '-2px', cursor: 'nwse-resize' },
-        path: 'M 13 5 Q 13 13 5 13',
+        pos: { bottom: '-3px', right: '-3px', cursor: 'nwse-resize' },
+        path: 'M 13 3 Q 13 13 3 13',
       },
       {
         cls: 'uw-c-bl',
-        pos: { bottom: '-2px', left: '-2px', cursor: 'nesw-resize' },
-        path: 'M 11 13 Q 3 13 3 5',
+        pos: { bottom: '-3px', left: '-3px', cursor: 'nesw-resize' },
+        path: 'M 13 13 Q 3 13 3 3',
       },
       {
         cls: 'uw-c-tl',
-        pos: { top: '-2px', left: '-2px', cursor: 'nwse-resize' },
-        path: 'M 3 11 Q 3 3 11 3',
+        pos: { top: '-3px', left: '-3px', cursor: 'nwse-resize' },
+        path: 'M 3 13 Q 3 3 13 3',
       },
     ];
     return defs.map((def) => {
       const svg = UITools._el(
         'svg:svg',
         {
-          viewBox: '0 0 15 15',
-          width: '14',
-          height: '14',
+          viewBox: '0 0 16 16',
+          width: '15',
+          height: '15',
           style: {
             display: 'block',
-            color: 'rgba(255,255,255,0.4)',
+            color: '#c9d1d9',
             pointerEvents: 'none',
           },
         },
         UITools._el('svg:path', {
           d: def.path,
           fill: 'none',
-          stroke: 'currentColor',
-          'stroke-width': '2.5',
+          stroke: '#c9d1d9',
+          'stroke-width': '2.8',
           'stroke-linecap': 'square',
           'stroke-linejoin': 'miter',
         })
@@ -1966,11 +1955,10 @@ class UITools {
           className: `uw-corner ${def.cls}`,
           style: {
             position: 'absolute',
-            width: '14px',
-            height: '14px',
-            zIndex: '10',
-            opacity: '0',
-            transition: 'opacity 0.2s',
+            width: '15px',
+            height: '15px',
+            zIndex: '20',
+            opacity: '1',
             touchAction: 'none',
             ...def.pos,
           },
@@ -2027,7 +2015,7 @@ class UITools {
           .uw-dialog.uw-maximized { border-radius:0!important; border:none!important; box-shadow:none!important; }
           .uw-dialog.uw-maximized .uw-header { cursor:default; }
           .uw-dialog.uw-maximized .uw-corner,
-          .uw-dialog.uw-minimized .uw-corner { display:none!important; }
+          .uw-dialog.uw-minimized 
           .uw-dialog.uw-minimized .uw-content { opacity: 0; pointer-events: none; }
           
           .uw-dialog.uw-minimized .fp-search-wrapper { display: none !important; }
@@ -2117,7 +2105,26 @@ class UITools {
           .uw-transparent .uw-header { background: rgba(0,0,0,0.3)!important; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; margin-bottom: 4px; }
           .uw-transparent .uw-content { background:transparent!important; padding: 0; }
           .uw-transparent .uw-footer { display:none!important; }
-          .uw-dialog:hover .uw-corner { opacity: 1 !important; }
+          .uw-corner {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      z-index: 20;
+      opacity: 1 !important;
+      touchAction: none;
+      userSelect: none;
+    }
+    .uw-corner::after {
+      content: '';
+      position: absolute;
+      top: -12px;
+      bottom: -12px;
+      left: -12px;
+      right: -12px;
+      touch-action: none;
+      cursor: inherit;
+    }
+   .uw-corner:hover, .uw-corner:active { opacity: 1 !important; transform: scale(1.1); }
 
           .uw-w-wrap { margin: 2px 0; }
           .uw-w-ph {
@@ -2242,11 +2249,11 @@ class UITools {
           @keyframes uw-pulse { 0%,100% { opacity:0.5; transform:scale(1); } 50% { opacity:1; transform:scale(1.4); } }
           @media (max-width: 768px) {
             .uw-dialog { max-width:calc(100vw - 16px)!important; max-height:calc(100vh - 24px)!important; }
-            .uw-header { min-height:44px!important; padding:6px 12px!important; cursor:default; }
+            .uw-header { min-height:44px!important; padding:6px 12px!important; cursor:grab; touch-action:none; }
             .uw-swipe-hint { display:block; width: 32px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 2px; margin: 0 auto; }
             .uw-title { font-size: 13px; }
             .uw-util-btn, .uw-close-btn { width: 36px!important; height: 36px!important; font-size: 14px!important; background: rgba(255,255,255,0.05); }
-            .uw-corner { display:none!important; }
+            
             .uw-btn { padding: 12px 20px; font-size: 14px; min-height: 44px; }
           }
         `;
