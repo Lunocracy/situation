@@ -1,6 +1,6 @@
 {
   "name": "MySituation",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Executive career dossier, economic valuation assessment, and interactive exhibits",
   "type": "luno-web-app",
   "mainClass": "SituationApp",
@@ -10,6 +10,7 @@
     "method": "run"
   },
   "main": [
+    "js/SituationApp.js",
     "js/SnareDrumAnimation.js",
     "js/ValueEmberLogo.js",
     "js/QuoraPolarization.js",
@@ -19,20 +20,12 @@
     "js/ElderAdvocacyPage.js",
     "js/CaretakerBiasPage.js",
     "js/CurrentWorkPage.js",
-    "js/ValuationPage.js",
-    "js/SituationApp.js"
+    "js/ValuationPage.js"
   ],
   "library": [
     "DomBasics.js",
     "UITools.js",
     "VideoPlayer.js"
   ],
-  "styles": [],
-  "processedCountSinceCheckpoint": 0,
-  "changedMethods": {
-    "MySituation/luno.json": "2026-08-24T20:00:24.629Z",
-    "MySituation/index.html": "2026-08-24T20:00:24.629Z"
-  },
-  "lastCheckpointTime": "2026-08-24T20:01:15.945Z",
-  "pendingCheckpointDescription": "Clean working tree"
+  "styles": []
 }
